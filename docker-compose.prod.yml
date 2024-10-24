@@ -1,0 +1,39 @@
+services:
+  backend:
+    image: crscorevsp.azurecr.io/mybackend:latest
+    build:
+      context: ./myproject
+    volumes:
+      - ./myproject:/app
+      - ./myproject/logs:/app/logs
+    ports:
+      - "8000:8000"
+    entrypoint: >
+      sh -c "./entrypoint.sh"
+
+  frontend:
+    image: crscorevsp.azurecr.io/myfrontend:latest
+    build:
+      context: ./myfrontend
+    volumes:
+      - ./myfrontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  superset:
+    image: crscorevsp.azurecr.io/superset:latest
+    build:
+      context: ./superset
+    ports:
+      - "8088:8088"
+    volumes:
+      - ./superset/superset_config.py:/app/pythonpath/superset_config.py
+      - superset_home:/app/superset_home
+    entrypoint: >
+      sh -c "./entrypoint.sh"
+
+volumes:
+  superset_home:

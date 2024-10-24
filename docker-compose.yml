@@ -1,0 +1,57 @@
+services:
+  db:
+    image: postgres:13
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    image: mybackend
+    build:
+      context: ./myproject
+    env_file:
+      - .env
+    volumes:
+      - ./myproject:/app
+      - ./myproject/logs:/app/logs
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    entrypoint: >
+      sh -c "./entrypoint.sh"
+
+  frontend:
+    image: myfrontend
+    build:
+      context: ./myfrontend
+    env_file:
+      - .env
+    volumes:
+      - ./myfrontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  superset:
+    image: superset
+    build:
+      context: ./superset
+    env_file:
+      - .env
+    volumes:
+      - ./superset/superset_config.py:/app/pythonpath/superset_config.py
+      - superset_home:/app/superset_home
+    ports:
+      - "8088:8088"
+    entrypoint: >
+      sh -c "./entrypoint.sh"
+
+volumes:
+  postgres_data:
+  superset_home:

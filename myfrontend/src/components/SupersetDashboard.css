@@ -1,0 +1,13 @@
+#superset-container {
+  width: 100%;  /* Full width of the parent */
+  height: 81vh; /* 80% of the viewport height */
+}
+
+iframe {
+  width: 100%; /* Take full width of the container */
+  height: 100%; /* Take full height of the container */
+  border: none; /* Remove borders */
+  display: block; /* Ensure the iframe behaves like a block element */
+  max-width: 100vw; /* Prevent the iframe from overflowing horizontally */
+  max-height: 100vh; /* Prevent the iframe from overflowing vertically */
+}

@@ -1,0 +1,34 @@
+.App {
+    text-align: center;
+    background: linear-gradient(to bottom right, #34c6cd, #34c6cd, #28a745, #007bff); /* Add gradient background with more green and blue */
+    min-height: 100vh; /* Ensure the gradient covers the full viewport height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    background-color: white; /* White background for the container */
+    border-radius: 8px; /* Rounded corners for the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add some shadow for depth */
+    max-width: 1500px; /* Control the width of the container */
+    width: 100%; /* Ensure the container takes full width up to max-width */
+    padding: 20px; /* Add padding inside the container */
+    margin: 10px auto; /* Center the container */
+}
+
+.App-header {
+    display: flex;
+    flex-direction: row; /* Align items horizontally */
+    align-items: center; /* Center items vertically */
+    justify-content: flex-start; /* Align items to the left */
+    margin-bottom: 15px; /* Space between header and form */
+}
+
+.App-header img {
+    width: 220px; /* Adjust the logo size as needed */
+    height: auto;
+    margin-right: 15px; /* Add some space between the logo and text */
+}
